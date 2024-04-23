@@ -14,9 +14,10 @@ exports.webScrapper = async (req, res) => {
         await retry(
             async (bail) => {
                 // scrap the URL 
-                const scrappedProducts = await webScrapper(WEB_SCRAP_URL);
+                const result = await webScrapper(WEB_SCRAP_URL);
+                
                 // store the data 
-                const Products = await webScrapperService.saveWebScrapProducts(scrappedProducts); 
+                const Products = await webScrapperService.saveWebScrapProducts(result); 
                 res.json({Products})
                 
             },
