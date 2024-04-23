@@ -5,14 +5,15 @@ const {connectToDB} = require('./db');
 require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 5000;
+const MAX_REQUEST = process.env.MAX_LIMIT_REQUEST || 100;
 
 // Set the server's time zone to UTC
 process.env.TZ = 'UTC';
 
-/* Limit the request or throttling */
+/* Limit the request or handle throttling */
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 100, // limit each IP to 100 requests per windowMs
+  max: MAX_REQUEST, // limit the maximum request in 1hr ( windowMs)
   message: {
     status: 429,
     message: 'Too many requests, please try again later'
