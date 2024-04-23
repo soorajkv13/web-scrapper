@@ -1,17 +1,13 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const {removeAlphaCharacters} =  require('../utils/customFunctions'); 
-const logger = require('../utils/logger');
 /**
  * 
  * @param {*} url - target website url 
  * @returns - scrapped products as array 
  */
 async function webScrapper(url) {
-    logger.log({
-        level: 'info',
-        message: 'webscrapping '+url
-    });
+
     const data = await axios.get(url);
     const $ = cheerio.load(data.data);
     let results = [];
@@ -30,6 +26,11 @@ async function webScrapper(url) {
                 numberOfReviews
             });
       });
+
+   
+    if(results.length < 1){
+        throw new Error("No products found");
+    }
 
     return results;
 }
