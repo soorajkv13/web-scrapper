@@ -1,5 +1,5 @@
 # Web Scrapper #
-Webscrapper will help to obtain a large amount of data from given url and process the required data 
+Webscrapper will help to scrape and monitor Products and the prices in Meesho
 
 ### Prerequisites
 
